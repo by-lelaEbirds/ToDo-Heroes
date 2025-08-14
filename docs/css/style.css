@@ -208,3 +208,7 @@ body.dark {
     --delete-btn-bg: #CF6679;
     --delete-btn-hover: #B00020;
 }
+
+body.fae {
+    cursor: url('../imagens/cursor-fae.png'), auto;
+}
