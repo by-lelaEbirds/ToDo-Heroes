@@ -129,7 +129,7 @@ function updateCanvas() {
     const theme = document.body.className;
     if (theme === 'hacker') {
         drawHacker();
-        document.body.style.cursor = 'crosshair'; // cursor especial apenas para hacker
+        document.body.style.cursor = 'crosshair';
     }
     else if (theme === 'aero') {
         drawAero();
@@ -137,7 +137,7 @@ function updateCanvas() {
     }
     else if (theme === 'dark') {
         drawDark();
-        document.body.style.cursor = 'default'; // cursor original no tema Dark
+        document.body.style.cursor = 'default';
     }
     else if (theme === 'fae') {
         drawFAE();
@@ -183,7 +183,7 @@ if (themeContainer) {
 
     const plaque = document.createElement('div');
     plaque.style.position = 'absolute';
-    plaque.style.bottom = '100%'; // acima do botão
+    plaque.style.bottom = '100%';
     plaque.style.left = '50%';
     plaque.style.transform = 'translateX(-50%)';
     plaque.style.marginBottom = '0.5rem';
@@ -197,6 +197,22 @@ if (themeContainer) {
     plaque.textContent = 'Alterne para um tema aqui ↓';
     themeContainer.appendChild(plaque);
 }
+
+// ===================== Gif seguindo o cursor =====================
+const cursorGif = document.createElement('img');
+cursorGif.src = 'docs/gif/spongebob-patrick.gif';
+cursorGif.style.width = '40px';   // tamanho pequeno
+cursorGif.style.height = '40px';
+cursorGif.style.position = 'fixed';
+cursorGif.style.pointerEvents = 'none';
+cursorGif.style.zIndex = 9999;
+cursorGif.style.transform = 'translate(-50%, -50%)';
+document.body.appendChild(cursorGif);
+
+document.addEventListener('mousemove', (e) => {
+    cursorGif.style.left = `${e.clientX}px`;
+    cursorGif.style.top = `${e.clientY}px`;
+});
 
 // ===================== Renderização inicial =====================
 renderer.render();
