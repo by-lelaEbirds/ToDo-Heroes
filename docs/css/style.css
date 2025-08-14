@@ -10,7 +10,7 @@
     --btn-hover-text: #FFFFFF;
     --li-bg: #FFFFFF;
     --li-border: #DDDDDD;
-    --li-hover-shadow: rgba(0,0,0,0.1);
+    --li-hover-shadow: rgba(0,0,0,0.2);
     --edit-btn-bg: #8000A0;
     --edit-btn-hover: #5e007f;
     --delete-btn-bg: #E74C3C;
@@ -24,28 +24,31 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     cursor: default;
-    transition: background 0.5s, color 0.5s;
+    transition: all 0.5s ease;
 }
 
+/* Header */
 header {
     background-color: var(--header-bg);
     color: var(--header-text);
     padding: 1rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: background 0.5s, color 0.5s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transition: all 0.5s ease;
 }
 
 header h1 {
     margin: 0;
     font-size: 2rem;
-    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    text-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 
+/* Input e botões */
 .task-input {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 .task-input input {
@@ -54,12 +57,12 @@ header h1 {
     border: 2px solid #DDDDDD;
     border-radius: 12px;
     outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: all 0.3s;
 }
 
 .task-input input:focus {
     border-color: #8000A0;
-    box-shadow: 0 0 10px rgba(173, 39, 198, 0.5);
+    box-shadow: 0 0 12px rgba(173,39,198,0.6);
 }
 
 .task-input button {
@@ -69,14 +72,14 @@ header h1 {
     color: var(--btn-text);
     font-weight: 600;
     border-radius: 12px;
-    margin-left: 5px;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    transition: all 0.3s;
 }
 
 .task-input button:hover {
     background-color: var(--btn-hover-bg);
     color: var(--btn-hover-text);
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--btn-hover-bg), 0 0 30px var(--btn-hover-text);
 }
 
 /* Filtros */
@@ -91,7 +94,7 @@ header h1 {
     background: transparent;
     color: var(--header-text);
     padding: 0.4rem 0.9rem;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: all 0.3s;
 }
 
@@ -99,6 +102,7 @@ header h1 {
 .filters button.active {
     background: var(--header-text);
     color: var(--header-bg);
+    box-shadow: 0 0 10px var(--header-text);
 }
 
 /* Selector de temas */
@@ -122,17 +126,17 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 1px solid var(--li-border);
-    transition: all 0.3s;
+    transition: all 0.4s;
     opacity: 0;
     transform: translateY(-20px);
-    animation: fadeInUp 0.4s forwards;
+    animation: fadeInUp 0.5s forwards;
 }
 
 li:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 0 15px var(--li-hover-shadow), 0 0 30px var(--li-hover-shadow);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 0 20px var(--li-hover-shadow), 0 0 40px var(--li-hover-shadow);
 }
 
 li.completed {
@@ -143,42 +147,37 @@ li.completed {
 
 /* Botões de ação */
 button {
-    border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 0.4rem 0.8rem;
     margin-left: 5px;
+    transition: all 0.3s;
 }
 
 .edit-btn {
     background-color: var(--edit-btn-bg);
-    color: #FFFFFF;
-    transition: all 0.3s;
+    color: #fff;
 }
 
 .edit-btn:hover {
     background-color: var(--edit-btn-hover);
-    transform: scale(1.1);
-    box-shadow: 0 0 10px var(--edit-btn-hover), 0 0 20px var(--edit-btn-hover);
+    transform: scale(1.15);
+    box-shadow: 0 0 12px var(--edit-btn-hover), 0 0 25px var(--edit-btn-hover);
 }
 
 .delete-btn {
     background-color: var(--delete-btn-bg);
-    color: #FFFFFF;
-    transition: all 0.3s;
+    color: #fff;
 }
 
 .delete-btn:hover {
     background-color: var(--delete-btn-hover);
-    transform: scale(1.1);
-    box-shadow: 0 0 10px var(--delete-btn-hover), 0 0 20px var(--delete-btn-hover);
+    transform: scale(1.15);
+    box-shadow: 0 0 12px var(--delete-btn-hover), 0 0 25px var(--delete-btn-hover);
 }
 
 /* Animação inicial das tasks */
 @keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* === Temas Alternativos === */
@@ -203,7 +202,7 @@ body.hacker {
     cursor: crosshair;
     background: linear-gradient(90deg, #0D0D0D, #010101);
     background-size: 400% 400%;
-    animation: hackerGlow 10s ease infinite alternate;
+    animation: hackerGlow 12s ease infinite alternate;
 }
 
 @keyframes hackerGlow {
@@ -216,20 +215,20 @@ body.aero {
     --bg-color: #E6F0FA;
     --text-color: #003366;
     --header-bg: #4A90E2;
-    --header-text: #FFFFFF;
-    --btn-bg: #FFFFFF;
+    --header-text: #fff;
+    --btn-bg: #fff;
     --btn-text: #4A90E2;
     --btn-hover-bg: #4A90E2;
-    --btn-hover-text: #FFFFFF;
+    --btn-hover-text: #fff;
     --li-bg: rgba(255,255,255,0.8);
     --li-border: rgba(160,196,255,0.5);
-    --li-hover-shadow: rgba(0,0,0,0.15);
+    --li-hover-shadow: rgba(0,0,0,0.25);
     --edit-btn-bg: #2E7DCC;
     --edit-btn-hover: #1B5F9E;
     --delete-btn-bg: #D32F2F;
     --delete-btn-hover: #B71C1C;
     cursor: grab;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
 }
 
 /* Dark total */
@@ -237,14 +236,14 @@ body.dark {
     --bg-color: #121212;
     --text-color: #E0E0E0;
     --header-bg: #1F1F1F;
-    --header-text: #FFFFFF;
-    --btn-bg: #333333;
-    --btn-text: #FFFFFF;
-    --btn-hover-bg: #555555;
-    --btn-hover-text: #FFFFFF;
+    --header-text: #fff;
+    --btn-bg: #333;
+    --btn-text: #fff;
+    --btn-hover-bg: #555;
+    --btn-hover-text: #fff;
     --li-bg: #1E1E1E;
-    --li-border: #444444;
-    --li-hover-shadow: rgba(255,255,255,0.1);
+    --li-border: #444;
+    --li-hover-shadow: rgba(255,255,255,0.2);
     --edit-btn-bg: #BB86FC;
     --edit-btn-hover: #9B59B6;
     --delete-btn-bg: #CF6679;
