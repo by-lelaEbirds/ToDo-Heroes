@@ -1,27 +1,28 @@
+// Inicialização do TaskManager e Renderer
 const manager = new TaskManager();
 const renderer = new Renderer(manager);
 
+// Elementos do DOM
 const input = document.getElementById("new-task");
 const addBtn = document.getElementById("add-task");
 const themeSelect = document.getElementById("theme-select");
 const filterButtons = document.querySelectorAll(".filters button");
 
-// Adicionar tarefa
-addBtn.addEventListener("click", () => {
-    if (input.value.trim()) {
-        manager.addTask(input.value.trim());
+// Função para adicionar tarefa
+function addTask() {
+    const taskText = input.value.trim();
+    if (taskText) {
+        manager.addTask(taskText);
         input.value = "";
         renderer.render();
     }
-});
+}
 
-// Adicionar com Enter
+// Eventos
+addBtn.addEventListener("click", addTask);
+
 input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter" && input.value.trim()) {
-        manager.addTask(input.value.trim());
-        input.value = "";
-        renderer.render();
-    }
+    if (e.key === "Enter") addTask();
 });
 
 // Alternar filtros
@@ -35,8 +36,11 @@ filterButtons.forEach(btn => {
 
 // Alternar temas
 themeSelect.addEventListener("change", () => {
-    document.body.className = themeSelect.value;
+    // Remove todas as classes de tema existentes
+    document.body.className = "";
+    // Adiciona a classe do tema selecionado
+    document.body.classList.add(themeSelect.value);
 });
 
-// Render inicial
+// Renderização inicial
 renderer.render();
