@@ -22,7 +22,6 @@ function addTask() {
 addBtn.addEventListener("click", addTask);
 input.addEventListener("keypress", (e) => { if (e.key === "Enter") addTask(); });
 
-// Alternar filtros
 filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
         filterButtons.forEach(b => b.classList.remove('active'));
@@ -99,13 +98,26 @@ function drawAero() {
     aeroOffset += 2;
 }
 
+// ===================== Tema FAE - Fundo amarelo com partículas =====================
+function drawFAE() {
+    // Fundo amarelo suave
+    ctx.fillStyle = 'rgba(255, 223, 0, 0.2)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Partículas amarelas sutis
+    for (let i = 0; i < 40; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        ctx.fillStyle = `rgba(255, 223, 0, ${Math.random() * 0.15})`;
+        ctx.fillRect(x, y, 3, 3);
+    }
+}
+
 // ===================== Tema Dark - Fundo preto com partículas =====================
 function drawDark() {
-    // Fundo preto sólido
     ctx.fillStyle = '#121212';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Partículas brancas suaves
     for (let i = 0; i < 50; i++) {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
@@ -120,6 +132,7 @@ function updateCanvas() {
     if (theme === 'hacker') drawHacker();
     else if (theme === 'aero') drawAero();
     else if (theme === 'dark') drawDark();
+    else if (theme === 'fae') drawFAE();
     else ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     requestAnimationFrame(updateCanvas);
@@ -134,6 +147,7 @@ themeSelect.addEventListener("change", () => {
     document.body.className = "";
     const theme = themeSelect.value;
     document.body.classList.add(theme);
+
     if (theme === 'hacker') initHackerDrops();
 });
 
@@ -144,6 +158,28 @@ window.addEventListener('resize', () => {
     aeroOffset = 0;
     initHackerDrops();
 });
+
+// ===================== Abaixar botão de temas e adicionar plaquinha =====================
+const themeContainer = document.querySelector('.theme-selector');
+if (themeContainer) {
+    themeContainer.style.marginTop = '3rem';
+
+    // Plaquinha com seta
+    const plaque = document.createElement('div');
+    plaque.style.position = 'absolute';
+    plaque.style.top = '0';
+    plaque.style.left = '50%';
+    plaque.style.transform = 'translateX(-50%)';
+    plaque.style.padding = '0.5rem 1rem';
+    plaque.style.background = 'rgba(255, 223, 0, 0.8)';
+    plaque.style.color = '#333';
+    plaque.style.borderRadius = '8px';
+    plaque.style.fontWeight = 'bold';
+    plaque.style.textAlign = 'center';
+    plaque.style.zIndex = 10;
+    plaque.textContent = 'Clique aqui ↓';
+    themeContainer.appendChild(plaque);
+}
 
 // ===================== Renderização inicial =====================
 renderer.render();
