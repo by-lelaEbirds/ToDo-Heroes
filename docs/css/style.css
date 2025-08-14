@@ -23,6 +23,7 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
+    cursor: default; /* padrão inicial */
 }
 
 header {
@@ -125,13 +126,13 @@ li.completed {
 }
 
 button {
-    cursor: pointer;
     border: none;
     border-radius: 6px;
     padding: 0.4rem 0.8rem;
     margin-left: 5px;
 }
 
+/* Botões de ação */
 .edit-btn {
     background-color: var(--edit-btn-bg);
     color: #FFFFFF;
@@ -169,6 +170,7 @@ body.hacker {
     --edit-btn-hover: #00FF00;
     --delete-btn-bg: #FF3333;
     --delete-btn-hover: #FF0000;
+    cursor: crosshair;
 }
 
 /* Aero (Windows 7 estilo suave) */
@@ -188,6 +190,7 @@ body.aero {
     --edit-btn-hover: #1B5F9E;
     --delete-btn-bg: #D32F2F;
     --delete-btn-hover: #B71C1C;
+    cursor: grab;
 }
 
 /* Dark total */
@@ -207,20 +210,10 @@ body.dark {
     --edit-btn-hover: #9B59B6;
     --delete-btn-bg: #CF6679;
     --delete-btn-hover: #B00020;
+    cursor: alias;
 }
 
+/* FAE padrão */
 body.fae {
-    cursor: url('../imagens/cursor-fae.png'), auto;
-}
-
-body.hacker {
-    cursor: url('../imagens/cursor-hacker.png'), auto;
-}
-
-body.aero {
-    cursor: url('../imagens/cursor-aero.png'), auto;
-}
-
-body.dark {
-    cursor: url('../imagens/cursor-dark.png'), auto;
+    cursor: pointer;
 }
