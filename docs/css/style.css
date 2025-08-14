@@ -1,49 +1,174 @@
+/* Variáveis de cores da FAE */
+:root {
+  --fae-purple: #AD27C6;
+  --fae-dark-purple: #8000A0;
+  --fae-white: #FFFFFF;
+  --fae-light-gray: #F4F4F4;
+  --fae-gray: #DDDDDD;
+  --fae-text: #333333;
+  --fae-error: #E74C3C;
+  --fae-warning: #F39C12;
+}
+
+/* Tipografia moderna */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f4f4f4;
-    color: #333;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: var(--fae-light-gray);
+  color: var(--fae-text);
 }
+
+/* Cabeçalho */
 header {
-    background: #2c3e50;
-    color: white;
-    padding: 1rem;
-    text-align: center;
+  background-color: var(--fae-purple);
+  color: var(--fae-white);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Campo de input */
 .task-input {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
+
 .task-input input {
-    padding: 0.5rem;
-    width: 60%;
+  padding: 0.6rem;
+  width: 60%;
+  border: 2px solid var(--fae-gray);
+  border-radius: 8px;
+  outline: none;
 }
+
+.task-input input:focus {
+  border-color: var(--fae-dark-purple);
+}
+
 .task-input button {
-    padding: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background-color: var(--fae-white);
+  color: var(--fae-purple);
+  font-weight: 600;
+  border-radius: 8px;
+  margin-left: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+.task-input button:hover {
+  background-color: var(--fae-purple);
+  color: var(--fae-white);
+}
+
+/* Filtros */
 .filters {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
+
 .filters button {
-    margin: 0 5px;
+  margin: 0 5px;
+  border: 2px solid var(--fae-white);
+  background: transparent;
+  color: var(--fae-white);
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+.filters button:hover,
+.filters button.active {
+  background-color: var(--fae-white);
+  color: var(--fae-purple);
+}
+
+/* Lista de tarefas */
 ul {
-    list-style: none;
-    padding: 0;
-    max-width: 600px;
-    margin: auto;
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 1.5rem auto;
 }
+
 li {
-    background: white;
-    margin: 5px 0;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: var(--fae-white);
+  margin: 8px 0;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--fae-gray);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
+
+li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 li.completed {
-    text-decoration: line-through;
-    color: gray;
+  text-decoration: line-through;
+  color: #999999;
+  background-color: #EDEDED;
 }
+
+/* Botões de ação */
 button {
-    cursor: pointer;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin-left: 5px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Editar */
+.edit-btn {
+  background-color: var(--fae-warning);
+  color: var(--fae-white);
+  transition: background 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #e67e22;
+}
+
+/* Excluir */
+.delete-btn {
+  background-color: var(--fae-error);
+  color: var(--fae-white);
+  transition: background 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Ícones dentro dos botões */
+button i {
+  margin-right: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 700px) {
+  .task-input input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-input button {
+    width: 100%;
+  }
+
+  ul {
+    margin: 1rem;
+  }
 }
