@@ -1,10 +1,13 @@
-// Inicialização do TaskManager e Renderer
 const manager = new TaskManager();
 const renderer = new Renderer(manager);
 
+const input = document.getElementById("new-task");
+const addBtn = document.getElementById("add-task");
+const themeSelect = document.getElementById("theme-select");
+const filterButtons = document.querySelectorAll(".filters button");
+
 // Adicionar tarefa
-document.getElementById("add-task").addEventListener("click", () => {
-    const input = document.getElementById("new-task");
+addBtn.addEventListener("click", () => {
     if (input.value.trim()) {
         manager.addTask(input.value.trim());
         input.value = "";
@@ -12,24 +15,28 @@ document.getElementById("add-task").addEventListener("click", () => {
     }
 });
 
-// Adicionar tarefa com Enter
-document.getElementById("new-task").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        document.getElementById("add-task").click();
+// Adicionar com Enter
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && input.value.trim()) {
+        manager.addTask(input.value.trim());
+        input.value = "";
+        renderer.render();
     }
 });
 
-// Filtros de tarefas
-document.querySelectorAll(".filters button").forEach(btn => {
+// Alternar filtros
+filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-        // Remove active de todos
-        document.querySelectorAll(".filters button").forEach(b => b.classList.remove('active'));
-        // Adiciona active no clicado
+        filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        // Renderiza filtro
         renderer.render(btn.dataset.filter);
     });
 });
 
-// Renderização inicial
+// Alternar temas
+themeSelect.addEventListener("change", () => {
+    document.body.className = themeSelect.value;
+});
+
+// Render inicial
 renderer.render();
