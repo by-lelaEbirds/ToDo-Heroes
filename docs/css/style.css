@@ -1,174 +1,210 @@
-/* Variáveis de cores da FAE */
+/* Variáveis padrão FAE */
 :root {
-  --fae-purple: #AD27C6;
-  --fae-dark-purple: #8000A0;
-  --fae-white: #FFFFFF;
-  --fae-light-gray: #F4F4F4;
-  --fae-gray: #DDDDDD;
-  --fae-text: #333333;
-  --fae-error: #E74C3C;
-  --fae-warning: #F39C12;
+    --bg-color: #F4F4F4;
+    --text-color: #333333;
+    --header-bg: #AD27C6;
+    --header-text: #FFFFFF;
+    --btn-bg: #FFFFFF;
+    --btn-text: #AD27C6;
+    --btn-hover-bg: #AD27C6;
+    --btn-hover-text: #FFFFFF;
+    --li-bg: #FFFFFF;
+    --li-border: #DDDDDD;
+    --li-hover-shadow: rgba(0,0,0,0.1);
+    --edit-btn-bg: #8000A0;
+    --edit-btn-hover: #5e007f;
+    --delete-btn-bg: #E74C3C;
+    --delete-btn-hover: #c0392b;
 }
 
-/* Tipografia moderna */
+/* Reset e estilos gerais */
 body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background-color: var(--fae-light-gray);
-  color: var(--fae-text);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
-/* Cabeçalho */
 header {
-  background-color: var(--fae-purple);
-  color: var(--fae-white);
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 header h1 {
-  margin: 0;
-  font-size: 2rem;
+    margin: 0;
+    font-size: 2rem;
 }
 
-/* Campo de input */
 .task-input {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .task-input input {
-  padding: 0.6rem;
-  width: 60%;
-  border: 2px solid var(--fae-gray);
-  border-radius: 8px;
-  outline: none;
+    padding: 0.6rem;
+    width: 60%;
+    border: 2px solid #DDDDDD;
+    border-radius: 8px;
+    outline: none;
 }
 
 .task-input input:focus {
-  border-color: var(--fae-dark-purple);
+    border-color: #8000A0;
 }
 
 .task-input button {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  background-color: var(--fae-white);
-  color: var(--fae-purple);
-  font-weight: 600;
-  border-radius: 8px;
-  margin-left: 5px;
-  transition: background-color 0.3s, color 0.3s;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    font-weight: 600;
+    border-radius: 8px;
+    margin-left: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .task-input button:hover {
-  background-color: var(--fae-purple);
-  color: var(--fae-white);
+    background-color: var(--btn-hover-bg);
+    color: var(--btn-hover-text);
 }
 
-/* Filtros */
 .filters {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .filters button {
-  margin: 0 5px;
-  border: 2px solid var(--fae-white);
-  background: transparent;
-  color: var(--fae-white);
-  padding: 0.4rem 0.9rem;
-  border-radius: 8px;
-  transition: background-color 0.3s, color 0.3s;
+    margin: 0 5px;
+    border: 2px solid var(--header-text);
+    background: transparent;
+    color: var(--header-text);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .filters button:hover,
 .filters button.active {
-  background-color: var(--fae-white);
-  color: var(--fae-purple);
+    background: var(--header-text);
+    color: var(--header-bg);
 }
 
-/* Lista de tarefas */
+.theme-selector {
+    margin-top: 1rem;
+}
+
 ul {
-  list-style: none;
-  padding: 0;
-  max-width: 600px;
-  margin: 1.5rem auto;
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 1.5rem auto;
 }
 
 li {
-  background-color: var(--fae-white);
-  margin: 8px 0;
-  padding: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--fae-gray);
-  transition: box-shadow 0.2s, transform 0.2s;
+    background-color: var(--li-bg);
+    margin: 8px 0;
+    padding: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--li-border);
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
 li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--li-hover-shadow);
 }
 
 li.completed {
-  text-decoration: line-through;
-  color: #999999;
-  background-color: #EDEDED;
+    text-decoration: line-through;
+    color: #999999;
+    background: #EDEDED;
 }
 
-/* Botões de ação */
 button {
-  cursor: pointer;
-  border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.8rem;
-  margin-left: 5px;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    margin-left: 5px;
 }
 
-/* Editar */
 .edit-btn {
-  background-color: var(--fae-warning);
-  color: var(--fae-white);
-  transition: background 0.3s;
+    background-color: var(--edit-btn-bg);
+    color: #FFFFFF;
 }
 
 .edit-btn:hover {
-  background-color: #e67e22;
+    background-color: var(--edit-btn-hover);
 }
 
-/* Excluir */
 .delete-btn {
-  background-color: var(--fae-error);
-  color: var(--fae-white);
-  transition: background 0.3s;
+    background-color: var(--delete-btn-bg);
+    color: #FFFFFF;
 }
 
 .delete-btn:hover {
-  background-color: #c0392b;
+    background-color: var(--delete-btn-hover);
 }
 
-/* Ícones dentro dos botões */
-button i {
-  margin-right: 5px;
+/* === Temas Alternativos === */
+
+/* Hacker (terminal verde) */
+body.hacker {
+    --bg-color: #0D0D0D;
+    --text-color: #33FF33;
+    --header-bg: #000000;
+    --header-text: #33FF33;
+    --btn-bg: #000000;
+    --btn-text: #33FF33;
+    --btn-hover-bg: #33FF33;
+    --btn-hover-text: #000000;
+    --li-bg: #111111;
+    --li-border: #33FF33;
+    --li-hover-shadow: #33FF33;
+    --edit-btn-bg: #33FF33;
+    --edit-btn-hover: #00FF00;
+    --delete-btn-bg: #FF3333;
+    --delete-btn-hover: #FF0000;
 }
 
-/* Responsividade */
-@media (max-width: 700px) {
-  .task-input input {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
+/* Aero (Windows 7 estilo suave) */
+body.aero {
+    --bg-color: #E6F0FA;
+    --text-color: #003366;
+    --header-bg: #4A90E2;
+    --header-text: #FFFFFF;
+    --btn-bg: #FFFFFF;
+    --btn-text: #4A90E2;
+    --btn-hover-bg: #4A90E2;
+    --btn-hover-text: #FFFFFF;
+    --li-bg: #FFFFFF;
+    --li-border: #A0C4FF;
+    --li-hover-shadow: rgba(0,0,0,0.15);
+    --edit-btn-bg: #2E7DCC;
+    --edit-btn-hover: #1B5F9E;
+    --delete-btn-bg: #D32F2F;
+    --delete-btn-hover: #B71C1C;
+}
 
-  .task-input button {
-    width: 100%;
-  }
-
-  ul {
-    margin: 1rem;
-  }
+/* Dark total */
+body.dark {
+    --bg-color: #121212;
+    --text-color: #E0E0E0;
+    --header-bg: #1F1F1F;
+    --header-text: #FFFFFF;
+    --btn-bg: #333333;
+    --btn-text: #FFFFFF;
+    --btn-hover-bg: #555555;
+    --btn-hover-text: #FFFFFF;
+    --li-bg: #1E1E1E;
+    --li-border: #444444;
+    --li-hover-shadow: rgba(255,255,255,0.1);
+    --edit-btn-bg: #BB86FC;
+    --edit-btn-hover: #9B59B6;
+    --delete-btn-bg: #CF6679;
+    --delete-btn-hover: #B00020;
 }
