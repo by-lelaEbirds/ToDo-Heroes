@@ -137,6 +137,8 @@ function updateCanvas() {
 }
 
 // ===================== Inicializações =====================
+document.body.classList.add('fae'); // <<< tema FAE inicial
+themeSelect.value = 'fae';          // seleciona no dropdown
 updateCanvas();
 initHackerDrops();
 
