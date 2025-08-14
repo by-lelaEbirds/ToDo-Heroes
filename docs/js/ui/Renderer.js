@@ -7,19 +7,24 @@ class Renderer {
     render(filter = "all") {
         this.listElement.innerHTML = "";
         const tasks = this.manager.getTasks(filter);
+
         tasks.forEach(task => {
             const li = document.createElement("li");
             li.className = task.completed ? "completed" : "";
-            
+
+            // Texto da tarefa - clique para concluir
             const text = document.createElement("span");
             text.textContent = task.text;
+            text.style.flex = "1";
             text.addEventListener("click", () => {
                 this.manager.toggleTask(task.id);
                 this.render(filter);
             });
 
+            // Botão Editar
             const editBtn = document.createElement("button");
-            editBtn.textContent = "Editar";
+            editBtn.className = "edit-btn";
+            editBtn.innerHTML = '<i class="fas fa-pen"></i>Editar';
             editBtn.addEventListener("click", () => {
                 const newText = prompt("Novo texto:", task.text);
                 if (newText) {
@@ -28,8 +33,10 @@ class Renderer {
                 }
             });
 
+            // Botão Excluir
             const delBtn = document.createElement("button");
-            delBtn.textContent = "Excluir";
+            delBtn.className = "delete-btn";
+            delBtn.innerHTML = '<i class="fas fa-trash"></i>Excluir';
             delBtn.addEventListener("click", () => {
                 this.manager.deleteTask(task.id);
                 this.render(filter);
