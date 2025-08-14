@@ -127,11 +127,26 @@ function drawDark() {
 // ===================== Atualização do canvas =====================
 function updateCanvas() {
     const theme = document.body.className;
-    if (theme === 'hacker') drawHacker();
-    else if (theme === 'aero') drawAero();
-    else if (theme === 'dark') drawDark();
-    else if (theme === 'fae') drawFAE();
-    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (theme === 'hacker') {
+        drawHacker();
+        document.body.style.cursor = 'crosshair'; // cursor especial apenas para hacker
+    }
+    else if (theme === 'aero') {
+        drawAero();
+        document.body.style.cursor = 'default';
+    }
+    else if (theme === 'dark') {
+        drawDark();
+        document.body.style.cursor = 'default'; // cursor original no tema Dark
+    }
+    else if (theme === 'fae') {
+        drawFAE();
+        document.body.style.cursor = 'default';
+    }
+    else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.body.style.cursor = 'default';
+    }
 
     requestAnimationFrame(updateCanvas);
 }
