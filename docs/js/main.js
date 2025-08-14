@@ -20,7 +20,6 @@ function addTask() {
 
 // Eventos
 addBtn.addEventListener("click", addTask);
-
 input.addEventListener("keypress", (e) => {
     if (e.key === "Enter") addTask();
 });
@@ -59,6 +58,7 @@ let hackerColumns = Math.floor(canvas.width / fontSize);
 let hackerDrops = [];
 
 function initHackerDrops() {
+    if (document.body.className !== 'hacker') return;
     hackerColumns = Math.floor(canvas.width / fontSize);
     hackerDrops = [];
     for (let x = 0; x < hackerColumns; x++) {
@@ -69,7 +69,7 @@ function initHackerDrops() {
 function drawHacker() {
     ctx.fillStyle = 'rgba(0,0,0,0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#33FF33';
+    ctx.fillStyle = '#00FF00'; // verde neon intenso
     ctx.font = fontSize + 'px monospace';
 
     for (let i = 0; i < hackerDrops.length; i++) {
@@ -83,17 +83,17 @@ function drawHacker() {
 
 // ===== Aero - ondas líquidas =====
 let aeroOffset = 0;
-
 function drawAero() {
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
     gradient.addColorStop(0, 'rgba(74,144,226,0.6)');
     gradient.addColorStop(0.5, 'rgba(174,221,255,0.4)');
     gradient.addColorStop(1, 'rgba(74,144,226,0.6)');
 
+    ctx.globalAlpha = 0.6;
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1;
 
-    // Linhas fluidas
     ctx.strokeStyle = 'rgba(255,255,255,0.2)';
     ctx.lineWidth = 2;
     for (let i = 0; i < canvas.height; i += 30) {
@@ -106,16 +106,22 @@ function drawAero() {
     aeroOffset += 2;
 }
 
-// ===== Dark - leve brilho pulsante =====
+// ===== Dark - partículas e brilho pulsante =====
 let darkAlpha = 0;
 let darkDirection = 0.01;
-
 function drawDark() {
     ctx.fillStyle = '#121212';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = `rgba(255,255,255,${darkAlpha})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < 50; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.1})`;
+        ctx.fillRect(x, y, 2, 2);
+    }
 
     darkAlpha += darkDirection;
     if (darkAlpha >= 0.08 || darkAlpha <= 0) darkDirection *= -1;
@@ -137,20 +143,20 @@ initHackerDrops();
 
 // ===== Alterar temas =====
 themeSelect.addEventListener("change", () => {
-    // Remove todas as classes de tema existentes
     document.body.className = "";
-    // Adiciona a classe do tema selecionado
     const theme = themeSelect.value;
     document.body.classList.add(theme);
 
-    // Reinicia efeitos
     if (theme === 'hacker') initHackerDrops();
 });
 
-// Ajusta canvas ao redimensionar
+// ===== Ajusta canvas ao redimensionar =====
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    aeroOffset = 0;
+    darkAlpha = 0;
+    darkDirection = 0.01;
     initHackerDrops();
 });
 
