@@ -212,3 +212,15 @@ body.dark {
 body.fae {
     cursor: url('../imagens/cursor-fae.png'), auto;
 }
+
+body.hacker {
+    cursor: url('../imagens/cursor-hacker.png'), auto;
+}
+
+body.aero {
+    cursor: url('../imagens/cursor-aero.png'), auto;
+}
+
+body.dark {
+    cursor: url('../imagens/cursor-dark.png'), auto;
+}
