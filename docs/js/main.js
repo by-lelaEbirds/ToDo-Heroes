@@ -137,8 +137,8 @@ function updateCanvas() {
 }
 
 // ===================== Inicializações =====================
-document.body.classList.add('fae'); // <<< tema FAE inicial
-themeSelect.value = 'fae';          // seleciona no dropdown
+document.body.classList.add('fae'); // Tema FAE inicial
+themeSelect.value = 'fae';          // Seleção inicial no dropdown
 updateCanvas();
 initHackerDrops();
 
@@ -148,7 +148,13 @@ themeSelect.addEventListener("change", () => {
     const theme = themeSelect.value;
     document.body.classList.add(theme);
 
-    if (theme === 'hacker') initHackerDrops();
+    // Só ativa o ponteiro especial no tema hacker
+    if (theme === 'hacker') {
+        initHackerDrops();
+        document.body.style.cursor = 'none'; // exemplo de efeito hacker
+    } else {
+        document.body.style.cursor = 'default';
+    }
 });
 
 // ===================== Ajuste do canvas ao redimensionar =====================
