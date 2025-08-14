@@ -23,7 +23,8 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    cursor: default; /* padrão inicial */
+    cursor: default;
+    transition: background 0.5s, color 0.5s;
 }
 
 header {
@@ -31,28 +32,34 @@ header {
     color: var(--header-text);
     padding: 1rem;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: background 0.5s, color 0.5s;
 }
 
 header h1 {
     margin: 0;
     font-size: 2rem;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
 .task-input {
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .task-input input {
     padding: 0.6rem;
     width: 60%;
     border: 2px solid #DDDDDD;
-    border-radius: 8px;
+    border-radius: 12px;
     outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .task-input input:focus {
     border-color: #8000A0;
+    box-shadow: 0 0 10px rgba(173, 39, 198, 0.5);
 }
 
 .task-input button {
@@ -61,18 +68,21 @@ header h1 {
     background-color: var(--btn-bg);
     color: var(--btn-text);
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-left: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
 .task-input button:hover {
     background-color: var(--btn-hover-bg);
     color: var(--btn-hover-text);
+    transform: scale(1.05);
 }
 
+/* Filtros */
 .filters {
     margin-top: 1rem;
+    text-align: center;
 }
 
 .filters button {
@@ -82,7 +92,7 @@ header h1 {
     color: var(--header-text);
     padding: 0.4rem 0.9rem;
     border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: all 0.3s;
 }
 
 .filters button:hover,
@@ -91,32 +101,38 @@ header h1 {
     color: var(--header-bg);
 }
 
+/* Selector de temas */
 .theme-selector {
     margin-top: 1rem;
+    text-align: center;
 }
 
+/* Lista de tarefas */
 ul {
     list-style: none;
     padding: 0;
     max-width: 600px;
-    margin: 1.5rem auto;
+    margin: 2rem auto;
 }
 
 li {
     background-color: var(--li-bg);
-    margin: 8px 0;
-    padding: 0.8rem;
+    margin: 10px 0;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--li-border);
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.4s forwards;
 }
 
 li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px var(--li-hover-shadow);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 15px var(--li-hover-shadow), 0 0 30px var(--li-hover-shadow);
 }
 
 li.completed {
@@ -125,6 +141,7 @@ li.completed {
     background: #EDEDED;
 }
 
+/* Botões de ação */
 button {
     border: none;
     border-radius: 6px;
@@ -132,28 +149,41 @@ button {
     margin-left: 5px;
 }
 
-/* Botões de ação */
 .edit-btn {
     background-color: var(--edit-btn-bg);
     color: #FFFFFF;
+    transition: all 0.3s;
 }
 
 .edit-btn:hover {
     background-color: var(--edit-btn-hover);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--edit-btn-hover), 0 0 20px var(--edit-btn-hover);
 }
 
 .delete-btn {
     background-color: var(--delete-btn-bg);
     color: #FFFFFF;
+    transition: all 0.3s;
 }
 
 .delete-btn:hover {
     background-color: var(--delete-btn-hover);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--delete-btn-hover), 0 0 20px var(--delete-btn-hover);
+}
+
+/* Animação inicial das tasks */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* === Temas Alternativos === */
 
-/* Hacker (terminal verde) */
+/* Hacker (neon verde) */
 body.hacker {
     --bg-color: #0D0D0D;
     --text-color: #33FF33;
@@ -171,9 +201,17 @@ body.hacker {
     --delete-btn-bg: #FF3333;
     --delete-btn-hover: #FF0000;
     cursor: crosshair;
+    background: linear-gradient(90deg, #0D0D0D, #010101);
+    background-size: 400% 400%;
+    animation: hackerGlow 10s ease infinite alternate;
 }
 
-/* Aero (Windows 7 estilo suave) */
+@keyframes hackerGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Aero (glass Windows 7) */
 body.aero {
     --bg-color: #E6F0FA;
     --text-color: #003366;
@@ -183,14 +221,15 @@ body.aero {
     --btn-text: #4A90E2;
     --btn-hover-bg: #4A90E2;
     --btn-hover-text: #FFFFFF;
-    --li-bg: #FFFFFF;
-    --li-border: #A0C4FF;
+    --li-bg: rgba(255,255,255,0.8);
+    --li-border: rgba(160,196,255,0.5);
     --li-hover-shadow: rgba(0,0,0,0.15);
     --edit-btn-bg: #2E7DCC;
     --edit-btn-hover: #1B5F9E;
     --delete-btn-bg: #D32F2F;
     --delete-btn-hover: #B71C1C;
     cursor: grab;
+    backdrop-filter: blur(6px);
 }
 
 /* Dark total */
