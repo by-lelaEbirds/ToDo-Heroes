@@ -200,8 +200,8 @@ if (themeContainer) {
 
 // ===================== Gif seguindo o cursor =====================
 const cursorGif = document.createElement('img');
-cursorGif.src = 'docs/gif/spongebob-patrick.gif';
-cursorGif.style.width = '40px';   // tamanho pequeno
+cursorGif.src = 'https://raw.githubusercontent.com/by-lelaEbirds/ToDo-Heroes/main/docs/gif/spongebob-patrick.gif';
+cursorGif.style.width = '40px';
 cursorGif.style.height = '40px';
 cursorGif.style.position = 'fixed';
 cursorGif.style.pointerEvents = 'none';
