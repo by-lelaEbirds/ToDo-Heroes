@@ -157,7 +157,7 @@ window.addEventListener('resize', () => {
     initHackerDrops();
 });
 
-// ===================== Abaixar botão de temas e adicionar plaquinha =====================
+// ===================== Abaixar botão de temas e adicionar plaquinha acima =====================
 const themeContainer = document.querySelector('.theme-selector');
 if (themeContainer) {
     themeContainer.style.marginTop = '3rem';
@@ -166,9 +166,10 @@ if (themeContainer) {
 
     const plaque = document.createElement('div');
     plaque.style.position = 'absolute';
-    plaque.style.top = '50%';
-    plaque.style.left = '105%'; // ao lado do botão
-    plaque.style.transform = 'translateY(-50%)';
+    plaque.style.bottom = '100%'; // acima do botão
+    plaque.style.left = '50%';
+    plaque.style.transform = 'translateX(-50%)';
+    plaque.style.marginBottom = '0.5rem';
     plaque.style.padding = '0.5rem 1rem';
     plaque.style.background = 'rgba(255, 223, 0, 0.8)';
     plaque.style.color = '#333';
