@@ -100,11 +100,9 @@ function drawAero() {
 
 // ===================== Tema FAE - Fundo amarelo com partículas =====================
 function drawFAE() {
-    // Fundo amarelo suave
     ctx.fillStyle = 'rgba(255, 223, 0, 0.2)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Partículas amarelas sutis
     for (let i = 0; i < 40; i++) {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
@@ -163,21 +161,22 @@ window.addEventListener('resize', () => {
 const themeContainer = document.querySelector('.theme-selector');
 if (themeContainer) {
     themeContainer.style.marginTop = '3rem';
+    themeContainer.style.position = 'relative';
+    themeContainer.style.display = 'inline-block';
 
-    // Plaquinha com seta
     const plaque = document.createElement('div');
     plaque.style.position = 'absolute';
-    plaque.style.top = '0';
-    plaque.style.left = '50%';
-    plaque.style.transform = 'translateX(-50%)';
+    plaque.style.top = '50%';
+    plaque.style.left = '105%'; // ao lado do botão
+    plaque.style.transform = 'translateY(-50%)';
     plaque.style.padding = '0.5rem 1rem';
     plaque.style.background = 'rgba(255, 223, 0, 0.8)';
     plaque.style.color = '#333';
     plaque.style.borderRadius = '8px';
     plaque.style.fontWeight = 'bold';
-    plaque.style.textAlign = 'center';
+    plaque.style.whiteSpace = 'nowrap';
     plaque.style.zIndex = 10;
-    plaque.textContent = 'Clique aqui ↓';
+    plaque.textContent = 'Alterne para um tema aqui ↓';
     themeContainer.appendChild(plaque);
 }
 
